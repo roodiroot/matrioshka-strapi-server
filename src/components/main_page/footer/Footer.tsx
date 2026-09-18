@@ -1,0 +1,34 @@
+import { useState } from "react";
+import { Icons } from "../../ui/Icons";
+import { InputPhone, InputPhoneWrapper } from "../../ui/InputPhone";
+import Button from "../../ui/Button";
+
+const Footer = () => {
+  const [value, setValue] = useState("");
+  return (
+    <footer className="border-b-[3px] border-black bg-[#3D7010]">
+      <div className="relative mx-auto flex min-h-71 w-full max-w-7xl items-center overflow-hidden px-3.5 py-12 sm:px-10">
+        <div className="relative z-10 max-w-132.5">
+          <p className="text-2xl font-extrabold tracking-tight-custom uppercase">Матрёшка</p>
+          <p className="mt-5 max-w-130 text-lg leading-[1.2] tracking-tight sm:text-xl">
+            Создаем сайты, которые помогают бизнесу достигать поставленные задачи, и расти.
+          </p>
+
+          <form className="mt-6 w-full max-w-95">
+            <label className="sr-only" htmlFor="footer-phone">
+              Номер телефона
+            </label>
+            <InputPhoneWrapper>
+              <InputPhone id="footer-phone" name="phone" value={value} setValue={setValue} />
+              <Button className="-my-0.75 -mr-0.75">Отправить</Button>
+            </InputPhoneWrapper>
+          </form>
+        </div>
+
+        <Icons.logo className="pointer-events-none absolute right-[8%] top-1/2 hidden w-[140px] -translate-y-1/2 sm:block" />
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
