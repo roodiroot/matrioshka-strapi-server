@@ -17,7 +17,7 @@ const CheckBox = forwardRef<HTMLInputElement, CheckBoxProps>(function CheckBox(
   return (
     <label
       className={cn(
-        "inline-flex min-h-11 items-center gap-3 text-sm font-semibold tracking-tight-custom",
+        "inline-flex items-center gap-3 text-sm font-semibold tracking-tight-custom",
         disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer",
         wrapperClassName,
       )}
@@ -31,7 +31,7 @@ const CheckBox = forwardRef<HTMLInputElement, CheckBoxProps>(function CheckBox(
           className={cn(
             "peer m-0 size-6 shrink-0 appearance-none rounded-md border-3 border-big-border bg-white shadow-[3px_3px_0_0_var(--color-big-border)]",
             "cursor-pointer transition-colors checked:bg-primary-button",
-            "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-dashed focus-visible:outline-big-border",
+            "focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-dashed focus-visible:outline-big-border",
             "aria-invalid:border-red-background disabled:cursor-not-allowed",
             className,
           )}

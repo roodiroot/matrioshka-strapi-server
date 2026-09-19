@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Icons } from "../../ui/Icons";
 import { InputPhone, InputPhoneWrapper } from "../../ui/InputPhone";
 import Button from "../../ui/Button";
+import PhoneForm from "../../general/forms/PhoneForm";
 
 const Footer = () => {
   const [value, setValue] = useState("");
@@ -14,15 +15,7 @@ const Footer = () => {
             Создаем сайты, которые помогают бизнесу достигать поставленные задачи, и расти.
           </p>
 
-          <form className="mt-6 w-full max-w-95">
-            <label className="sr-only" htmlFor="footer-phone">
-              Номер телефона
-            </label>
-            <InputPhoneWrapper>
-              <InputPhone id="footer-phone" name="phone" value={value} setValue={setValue} />
-              <Button className="-my-0.75 -mr-0.75">Отправить</Button>
-            </InputPhoneWrapper>
-          </form>
+          <PhoneForm />
         </div>
 
         <Icons.logo className="pointer-events-none absolute right-[8%] top-1/2 hidden w-[140px] -translate-y-1/2 sm:block" />

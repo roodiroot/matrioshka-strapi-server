@@ -20,7 +20,7 @@ const FeedbackModal = () => {
         if (!open) close();
       }}
     >
-      <Dialog className="relative flex gap-6 outline-none">
+      <Dialog className="flex gap-6 outline-none">
         <button onClick={close} className="absolute z-10 top-8 right-8">
           <Icons.x />
         </button>

@@ -70,6 +70,7 @@ const Section_3 = () => {
         <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4">
           {portfolioItems.map((i) => (
             <Card_4
+              key={i.id}
               title={i.title}
               description={i.description}
               image={i.image}

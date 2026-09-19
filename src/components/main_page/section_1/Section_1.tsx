@@ -46,6 +46,7 @@ const Section1 = () => {
         <div className="flex-1 grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6">
           {services.map((i) => (
             <Card_1
+              key={i.title}
               title={i.title}
               description={i.description}
               className="max-w-90 sm:max-w-none"

@@ -13,6 +13,7 @@ const FeedbackForm = () => {
     register,
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FeedbackFormValues>({
     resolver: zodResolver(feedbackSchema),
@@ -30,6 +31,7 @@ const FeedbackForm = () => {
     console.log(data);
     // Здесь отправка на API.
     // data.phone уже очищен и преобразован схемой.
+    reset();
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-5">

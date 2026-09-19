@@ -55,7 +55,7 @@ const Section_2 = () => {
         </div>
         <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(230px,1fr))] gap-4">
           {workStages.map((i) => (
-            <Card_2 title={i.title} description={i.description} number={i.number} />
+            <Card_2 key={i.number} title={i.title} description={i.description} number={i.number} />
           ))}
         </div>
         <Card_3

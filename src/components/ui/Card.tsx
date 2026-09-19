@@ -127,7 +127,7 @@ export const Card_4: React.FC<Card_4Props> = ({
         </div>
         <div className="mt-10 flex-1 flex items-end gap-x-2 gap-y-1 flex-wrap">
           {tags.map((i) => (
-            <Tag text={i} />
+            <Tag key={i} text={i} />
           ))}
         </div>
       </div>
