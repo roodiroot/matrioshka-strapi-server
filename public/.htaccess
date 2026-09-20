@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# Leave API and asset requests to the server.
+RewriteRule ^(?:api|assets)(?:/|$) - [END]
+
+# Serve existing files and directories normally.
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [END]
+
+# Let React Router handle page URLs, including its 404 page.
+RewriteRule ^ index.html [END]

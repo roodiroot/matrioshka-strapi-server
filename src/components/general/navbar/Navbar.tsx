@@ -2,6 +2,7 @@ import { Menu } from "lucide-react";
 import Button from "../../ui/Button";
 import { Icons } from "../../ui/Icons";
 import { useModal } from "../../../hooks/useModal";
+import { Link } from "react-router";
 
 const Navbar = () => {
   const { open } = useModal();
@@ -9,17 +10,20 @@ const Navbar = () => {
     <div className="sticky top-0 z-20 w-full bg-red-background border-b-[3px] border-shadow">
       <nav className="w-full max-w-7xl mx-auto px-3.5">
         <div className="w-full flex items-center justify-between py-4">
-          <div>
+          <Link to="/" aria-label="Матрёшка — на главную">
             <Icons.element_4 className="size-14" />
-          </div>
+          </Link>
           <div className="flex-1 gap-4 items-center justify-center hidden sm:flex">
-            <div className="p-2.5 tracking-tight-custom uppercase font-semibold">Услуги</div>
+            <Link to="/contacts" className="p-2.5 tracking-tight-custom uppercase font-semibold">
+              Контакты
+            </Link>
             <div className="p-2.5  tracking-tight-custom uppercase font-semibold">Проекты</div>
             <div className="p-2.5 tracking-tight-custom uppercase font-semibold">О компании</div>
           </div>
           <Button onClick={open} className="hidden sm:inline-flex">
             Обсудить проект
           </Button>
+          <Link to="/contacts" className="ml-auto mr-4 p-2 text-sm font-semibold uppercase sm:hidden">Контакты</Link>
           <Button className="sm:hidden" size="icon">
             <Menu />
           </Button>

@@ -1,7 +1,8 @@
 import Container from "../../general/Container";
 import Title from "../../general/Title";
 import Badge from "../../ui/Badge";
-import portfolioImg from "../../../assets/portfolio/image.png";
+import { portfolioItems } from "../../../data/projects";
+import { Link } from "react-router";
 import Button from "../../ui/Button";
 
 import { Card_4 } from "../../ui/Card";
@@ -9,42 +10,11 @@ import { Icons } from "../../ui/Icons";
 
 import nevalashkaImage from "../../../assets/nevalashka.png";
 
-export const portfolioItems = [
-  {
-    id: "astraway",
-    title: "ASTRAWAY",
-    description:
-      "Дизайн лендинга для бренда бытовой химии с акцентом на чистоту, экологичность и экономичность. Лёгкая визуальная стилистика, тематические иллюстрации и понятная структура.",
-    image: portfolioImg,
-    imageAlt: "Лендинг бренда бытовой химии Astraway",
-    tags: ["Web Design", "Landing Page", "UI/UX"],
-    backgroundColor: "#A7CB63",
-  },
-  {
-    id: "forma",
-    title: "FORMA",
-    description:
-      "Сайт студии интерьерного дизайна с акцентом на проекты и детали. Крупные фотографии, сдержанная типографика и удобная навигация помогают познакомиться с подходом команды.",
-    image: portfolioImg,
-    imageAlt: "Сайт студии интерьерного дизайна Forma",
-    tags: ["Web Design", "Corporate Website", "UI/UX"],
-    backgroundColor: "#FFFFFF",
-  },
-  {
-    id: "bloom",
-    title: "BLOOM",
-    description:
-      "Интернет-магазин цветочной мастерской с удобным выбором букетов и оформлением доставки. Нежная палитра, выразительные фотографии и продуманный каталог создают настроение.",
-    image: portfolioImg,
-    imageAlt: "Интернет-магазин цветочной мастерской Bloom",
-    tags: ["Web Design", "E-commerce", "UI/UX"],
-    backgroundColor: "#FFFFFF",
-  },
-];
+
 
 const Section_3 = () => {
   return (
-    <Container className="overflow-hidden relative">
+    <Container id="projects" className="overflow-hidden relative scroll-mt-24">
       {/* Desktop background composition */}
       <div className="pointer-events-none absolute inset-0 z-0 block">
         <Icons.element_5 className="absolute -bottom-5 left-[10%] sm:bottom-5  sm:left-[20%]" />
@@ -69,15 +39,16 @@ const Section_3 = () => {
         </div>
         <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4">
           {portfolioItems.map((i) => (
+            <Link key={i.id} to={`/projects/${i.id}`} className="block max-w-100 rounded-[26px] focus-visible:outline-2 focus-visible:outline-offset-4">
             <Card_4
-              key={i.id}
               title={i.title}
               description={i.description}
               image={i.image}
               tags={i.tags}
               imageAlt={i.imageAlt}
-              className="max-w-100 bg-[#F6ECDC] last:bg-[#A7CB62]"
+              className="h-full bg-[#F6ECDC]"
             />
+            </Link>
           ))}
         </div>
         <div>

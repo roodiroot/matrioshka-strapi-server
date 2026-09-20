@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "deploy": "bash deploy.sh",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -18,6 +19,7 @@
     "react-aria-components": "^1.21.1",
     "react-dom": "^19.2.8",
     "react-hook-form": "^7.88.0",
+    "react-router": "^8.4.0",
     "tailwind-merge": "^3.6.0",
     "tailwind-variants": "^3.3.1",
     "tailwindcss": "^4.3.3",

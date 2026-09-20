@@ -1,11 +1,7 @@
-import { useState } from "react";
 import { Icons } from "../../ui/Icons";
-import { InputPhone, InputPhoneWrapper } from "../../ui/InputPhone";
-import Button from "../../ui/Button";
 import PhoneForm from "../../general/forms/PhoneForm";
 
 const Footer = () => {
-  const [value, setValue] = useState("");
   return (
     <footer className="border-b-[3px] border-black bg-[#3D7010]">
       <div className="relative mx-auto flex min-h-71 w-full max-w-7xl items-center overflow-hidden px-3.5 py-12 sm:px-10">
@@ -18,7 +14,10 @@ const Footer = () => {
           <PhoneForm />
         </div>
 
-        <Icons.logo className="pointer-events-none absolute right-[8%] top-1/2 hidden w-[140px] -translate-y-1/2 sm:block" />
+        <Icons.logo className="pointer-events-none absolute right-[8%] top-1/2 hidden w-35 -translate-y-1/2 sm:block" />
+      </div>
+      <div className="bg-background border-t-3 border-big-border px-5 py-5 text-center text-sm font-semibold uppercase tracking-tight-custom">
+        Создаём сайты, которые работают
       </div>
     </footer>
   );

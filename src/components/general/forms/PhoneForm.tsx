@@ -4,8 +4,12 @@ import { InputPhone, InputPhoneWrapper } from "../../ui/InputPhone";
 import { phoneSchema, type PhoneFormValues } from "../../../schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import CheckBox from "../../ui/CheckBox";
+import { sendFeedback } from "../../../api/feedback";
+import { useState } from "react";
 
 const PhoneForm = () => {
+  const [loading, setLoading] = useState(false);
+
   const {
     register,
     control,
@@ -21,12 +25,19 @@ const PhoneForm = () => {
     mode: "onBlur",
   });
 
-  const onSubmit = (data: PhoneFormValues) => {
-    console.log(data);
-    // Здесь отправка на API.
-    // data.phone уже очищен и преобразован схемой.
-    reset();
+  const onSubmit = async (data: PhoneFormValues) => {
+    setLoading(true);
+    const res = await sendFeedback({
+      to: "borisov130490@gmail.com",
+      subject: "Обратная связь c matryoshka-studio.ru",
+      text: `Телефон: ${data.phone};`,
+    });
+    if (res.ok) {
+      reset();
+    }
+    setLoading(false);
   };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="mt-6 w-full max-w-95">
       <label className="sr-only" htmlFor="footer-phone">
@@ -50,7 +61,7 @@ const PhoneForm = () => {
             />
           )}
         />
-        <Button type="submit" className="-my-0.75 -mr-0.75">
+        <Button isLoading={loading} disabled={loading} type="submit" className="-my-0.75 -mr-0.75">
           Отправить
         </Button>
       </InputPhoneWrapper>

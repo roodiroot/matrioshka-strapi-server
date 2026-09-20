@@ -1,6 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
+.feedback-form-scroll {
+  scroll-padding-block: 1.5rem;
+}
+
+.mobile-feedback-form input:not([type="checkbox"]),
+.mobile-feedback-form textarea {
+  font-size: 16px;
+  min-height: 48px;
+  text-transform: none;
+  scroll-margin-block: 1.5rem;
+}
+
+.mobile-feedback-form textarea {
+  resize: vertical;
+}
+
 @theme {
   --font-sans: "Inter", sans-serif;
   --color-red-background: #D70A1E;

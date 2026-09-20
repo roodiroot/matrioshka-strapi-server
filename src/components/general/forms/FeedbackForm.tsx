@@ -7,14 +7,18 @@ import { feedbackSchema, type FeedbackFormValues } from "../../../schemas";
 import Input from "../../ui/Input";
 import TextArea from "../../ui/TextArea";
 import CheckBox from "../../ui/CheckBox";
+import { sendFeedback } from "../../../api/feedback";
+import { useState } from "react";
 
-const FeedbackForm = () => {
+const FeedbackForm = ({ onClose }: { onClose?: () => void }) => {
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+
   const {
     register,
     control,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<FeedbackFormValues>({
     resolver: zodResolver(feedbackSchema),
     defaultValues: {
@@ -27,16 +31,28 @@ const FeedbackForm = () => {
     mode: "onBlur",
   });
 
-  const onSubmit = (data: FeedbackFormValues) => {
-    console.log(data);
-    // Здесь отправка на API.
-    // data.phone уже очищен и преобразован схемой.
+  const onSubmit = async (data: FeedbackFormValues) => {
+    setStatus("idle");
+    try {
+    const res = await sendFeedback({
+      to: "borisov130490@gmail.com",
+      subject: "Обратная связь c matryoshka-studio.ru",
+      text: `Имя: ${data.name};
+        Email: ${data.email || "Не указан"};
+        Телефон: ${data.phone};
+        Комментарий: ${data.comment || "Не указан"}.`,
+    });
+    if (!res.ok) throw new Error("Send failed");
     reset();
+    setStatus("success");
+    } catch {
+      setStatus("error");
+    }
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-5">
+    <form onSubmit={handleSubmit(onSubmit)} noValidate className="mobile-feedback-form flex flex-col gap-5 text-start">
       <div className="relative">
-        <Label>Как вас зовут?</Label>
+        <Label htmlFor="feedback-name">Как вас зовут?</Label>
         <Input
           weight="sm"
           id="feedback-name"
@@ -47,7 +63,7 @@ const FeedbackForm = () => {
         />
         {errors.name && (
           <p
-            className="absolute -bottom-5 left-5.5 text-xs text-red-500 tracking-tighter font-medium"
+            className="mt-2 text-sm text-red-700 font-medium"
             id="name-error"
           >
             {errors.name.message}
@@ -55,27 +71,29 @@ const FeedbackForm = () => {
         )}
       </div>
       <div className="relative">
-        <Label>Ваш email</Label>
+        <Label htmlFor="feedback-email">Ваш email</Label>
         <Input
           weight="sm"
           id="feedback-email"
           type="email"
           autoComplete="email"
+          autoCapitalize="none"
+          spellCheck={false}
           {...register("email")}
           aria-invalid={!!errors.email}
           aria-describedby={errors.email ? "email-error" : undefined}
         />
         {errors.email && (
           <p
-            className="absolute -bottom-5 left-5.5 text-xs text-red-500 tracking-tighter font-medium"
-            id="name-error"
+            className="mt-2 text-sm text-red-700 font-medium"
+            id="email-error"
           >
             {errors.email.message}
           </p>
         )}
       </div>
       <div className="relative">
-        <Label>Ваш телефон</Label>
+        <Label htmlFor="feedback-phone">Ваш телефон</Label>
         <InputPhoneWrapper>
           <Controller
             name="phone"
@@ -98,15 +116,15 @@ const FeedbackForm = () => {
         </InputPhoneWrapper>
         {errors.phone && (
           <p
-            className="absolute -bottom-5 left-5.5 text-xs text-red-500 tracking-tighter font-medium"
-            id="name-error"
+            className="mt-2 text-sm text-red-700 font-medium"
+            id="phone-error"
           >
             {errors?.phone?.message}
           </p>
         )}
       </div>
       <div className="relative">
-        <Label>Комментарий?</Label>
+        <Label htmlFor="feedback-comment">Комментарий</Label>
         <TextArea rows={3} id="feedback-comment" {...register("comment")} />
       </div>
       <div className="relative text-start">
@@ -122,17 +140,19 @@ const FeedbackForm = () => {
         {errors.consent && (
           <p
             id="consent-error"
-            className="absolute bottom-0 left-9 text-xs text-red-500 tracking-tighter font-medium"
+            className="mt-2 text-sm text-red-700 font-medium"
           >
             {errors.consent.message}
           </p>
         )}
       </div>
-      <div className="flex gap-3">
-        <Button type="submit" className="w-full">
+      {status === "success" && <p role="status" className="rounded-xl bg-green-100 p-4 text-green-900">Спасибо! Заявка отправлена. Мы свяжемся с вами.</p>}
+      {status === "error" && <p role="alert" className="rounded-xl bg-red-100 p-4 text-red-900">Не удалось отправить заявку. Проверьте соединение и попробуйте снова — введённые данные сохранены.</p>}
+      <div className="flex flex-col gap-3 sm:flex-row">
+        <Button disabled={isSubmitting} isLoading={isSubmitting} type="submit" className="w-full">
           Отправить
         </Button>
-        <Button className="w-full" variant="secondary">
+        <Button onClick={onClose} className="w-full" variant="secondary">
           Закрыть
         </Button>
       </div>
