@@ -10,7 +10,7 @@ while IFS= read -r -d '' file; do
   uploads+=("ftp://s9xaqu8t.beget.tech/public_html/${file#./}")
 done < <(find . -type f -print0)
 
-curl --user 's9xaqu8t_matryoshka' \
+curl --netrc-file /Users/maxim/Desktop/мой сайт/matryoshka/.netrc \
   --ftp-create-dirs \
   --fail-early \
   --fail \

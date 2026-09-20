@@ -9,10 +9,13 @@ import { Route, Routes } from "react-router";
 import NotFoundPage from "./pages/NotFoundPage";
 import ContactsPage from "./pages/ContactsPage";
 import ProjectPage from "./pages/ProjectPage";
+import ScrollToTop from "./components/general/ScrollToTop";
 
 function App() {
   return (
     <div>
+      <ScrollToTop />
+      <div className="pt-23 bg-primary-button" />
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />

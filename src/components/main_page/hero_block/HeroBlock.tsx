@@ -44,7 +44,7 @@ const HeroBLock = () => {
               <p className="text-2xl tracking-tight">
                 Разрабатываем современные быстрые сайты для бизнеса и стартапов
               </p>
-              <div className="flex gap-1.5 sm:gap-6 pt-4">
+              <div className="flex flex-col sm:flex-row gap-1.5 sm:gap-6 pt-4">
                 <Button onClick={open}>Обсудить проект</Button>
                 <Button variant="secondary">Смотреть проекты</Button>
               </div>
