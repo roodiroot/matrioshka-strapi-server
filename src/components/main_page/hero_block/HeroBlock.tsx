@@ -39,7 +39,7 @@ const HeroBLock = () => {
           <div className="relative lg:pt-10 ">
             <div className="relative z-10 space-y-6">
               <h1 className="uppercase font-extrabold tracking-tight-custom text-balance text-[clamp(3rem,12vw,4rem)] leading-[0.95] md:text-[80px] md:leading-20">
-                Создаем сайты, которые работают
+                Создаем сайты, которые работают.
               </h1>
               <p className="text-2xl tracking-tight">
                 Разрабатываем современные быстрые сайты для бизнеса и стартапов

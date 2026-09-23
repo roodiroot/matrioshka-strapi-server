@@ -10,15 +10,15 @@ interface ResponseFeedback {
   message?: string;
 }
 
-/** Отправляет сообщение на эндпоинт из VITE_FEEDBACK_API_URL. */
+/** Отправляет сообщение на эндпоинт из VITE_API_URL. */
 export async function sendFeedback(
   body: SendFeedbackBody,
   signal?: AbortSignal,
 ): Promise<ResponseFeedback> {
-  const url = import.meta.env.VITE_FEEDBACK_API_URL;
+  const url = import.meta.env.VITE_API_URL;
 
   if (!url) {
-    throw new Error("Не задан адрес API: VITE_FEEDBACK_API_URL");
+    throw new Error("Не задан адрес API: VITE_API_URL");
   }
 
   const response = await fetch(`${url}/api/contact/send`, {

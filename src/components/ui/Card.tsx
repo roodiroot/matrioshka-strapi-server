@@ -16,7 +16,7 @@ interface Card_2Props extends React.HTMLAttributes<HTMLDivElement> {
   description: string;
 }
 interface Card_4Props extends React.HTMLAttributes<HTMLDivElement> {
-  image: string;
+  image?: string;
   imageAlt: string;
   title: string;
   description: string;
@@ -110,26 +110,34 @@ export const Card_4: React.FC<Card_4Props> = ({
       {...props}
     >
       <div className="bg-white relative -mx-0.75 -mt-0.75 aspect-[1.6/1] overflow-hidden rounded-[26px] border-3 border-big-border">
-        <img
-          src={image}
-          alt={imageAlt}
-          width={388}
-          height={246}
-          className="absolute w-full h-full object-cover"
-        />
+        {image ? (
+          <img
+            src={image}
+            alt={imageAlt}
+            width={388}
+            height={246}
+            className="absolute w-full h-full object-cover"
+          />
+        ) : (
+          <div className="flex h-full items-center justify-center bg-[#F6ECDC] text-sm">
+            Обложка скоро появится
+          </div>
+        )}
       </div>
       <div className="p-6 flex flex-col">
         <div>
-          <h3 className="uppercase font-semibold text-[37px] leading-[100%] tracking-tight-custom">
+          <h3 className="uppercase font-bold  text-[35px] leading-[100%] tracking-tight-custom">
             {title}
           </h3>
           <p className="mt-2.5 tracking-tighter font-medium text-sm">{description}</p>
         </div>
-        <div className="mt-10 flex-1 flex items-end gap-x-2 gap-y-1 flex-wrap">
-          {tags.map((i) => (
-            <Tag key={i} text={i} />
-          ))}
-        </div>
+        {tags.length > 0 && (
+          <div className="mt-10 flex-1 flex items-end gap-x-2 gap-y-1 flex-wrap">
+            {tags.map((i) => (
+              <Tag key={i} text={i} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

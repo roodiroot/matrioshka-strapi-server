@@ -118,3 +118,34 @@
     text-decoration: none;
   }
 }
+
+/* Типографика статей из Strapi. */
+.project-prose {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+.project-prose > * + * { margin-top: 1.25em; }
+.project-prose :is(h1, h2, h3, h4, h5, h6) {
+  margin-top: 1.6em;
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+}
+.project-prose > :first-child { margin-top: 0; }
+.project-prose :is(h4, h5, h6) { font-size: 1.4em; }
+.project-prose :is(ul, ol) { padding-left: 1.5em; }
+.project-prose ul { list-style: disc; }
+.project-prose ol { list-style: decimal; }
+.project-prose li + li { margin-top: 0.5em; }
+.project-prose li::marker { color: var(--color-red-background); font-weight: 700; }
+.project-prose a { text-decoration: underline; text-underline-offset: 4px; }
+.project-prose a:hover { color: var(--color-red-background); }
+.project-prose blockquote { border-left: 4px solid var(--color-red-background); padding-left: 1.25em; font-style: italic; }
+.project-prose pre { overflow-x: auto; padding: 1.25rem; border-radius: 1rem; background: #F6ECDC; font-size: 0.85em; }
+.project-prose code { background: #F6ECDC; padding: 0.15em 0.3em; border-radius: 0.25rem; }
+.project-prose pre code { padding: 0; }
+.project-prose img { height: auto; margin-block: 2rem; border: 3px solid var(--color-big-border); border-radius: 1.5rem; }
+.project-prose hr { margin-block: 2rem; border-top: 2px solid var(--color-big-border); }

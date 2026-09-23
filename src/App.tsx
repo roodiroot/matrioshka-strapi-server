@@ -9,7 +9,10 @@ import { Route, Routes } from "react-router";
 import NotFoundPage from "./pages/NotFoundPage";
 import ContactsPage from "./pages/ContactsPage";
 import ProjectPage from "./pages/ProjectPage";
+import ProjectsPage from "./pages/ProjectsPage";
 import ScrollToTop from "./components/general/ScrollToTop";
+
+import AboutPage from "./pages/AboutPage";
 
 function App() {
   return (
@@ -20,7 +23,9 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/contacts" element={<ContactsPage />} />
-        <Route path="/projects/:id" element={<ProjectPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/projects/:slug" element={<ProjectPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
