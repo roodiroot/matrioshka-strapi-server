@@ -1,3 +1,5 @@
+import Seo from "../components/general/Seo";
+import Breadcrumbs from "../components/general/Breadcrumbs";
 import { ArrowUpRight } from "lucide-react";
 import { Link, useSearchParams } from "react-router";
 import Badge from "../components/ui/Badge";
@@ -27,14 +29,10 @@ export default function ProjectsPage() {
 
   return (
     <main>
-      <title>Проекты — Матрёшка</title>
+      <Seo title="Проекты" description="Портфолио веб-студии «Матрёшка». Посмотрите, как мы соединяем дизайн и удобство в сайтах для бизнеса." />
       <section className="relative overflow-hidden border-b-3 border-big-border bg-[#90B730]">
         <div className="relative mx-auto max-w-7xl px-5 py-10 sm:py-16 lg:py-20">
-          <nav aria-label="Хлебные крошки" className="mb-10 flex items-center gap-3 text-sm">
-            <Link to="/" className="underline underline-offset-4 hover:no-underline">Главная</Link>
-            <span aria-hidden="true">/</span>
-            <span aria-current="page">Проекты</span>
-          </nav>
+          <Breadcrumbs items={[{ label: "Проекты" }]} />
           <div className="relative z-10 max-w-3xl">
             <Badge className="bg-background">Портфолио</Badge>
             <h1 className="mt-7 text-[clamp(2.75rem,7.5vw,6rem)] leading-[0.95] font-extrabold uppercase tracking-tight-custom">Идеи, которые<br />стали сайтами.</h1>

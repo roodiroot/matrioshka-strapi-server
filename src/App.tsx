@@ -1,3 +1,4 @@
+import Seo from "./components/general/Seo";
 import Navbar from "./components/general/navbar/Navbar";
 import HeroBLock from "./components/main_page/hero_block/HeroBlock";
 import Footer from "./components/main_page/footer/Footer";
@@ -37,6 +38,10 @@ function App() {
 function HomePage() {
   return (
     <>
+      <Seo
+        title="Разработка сайтов для бизнеса"
+        description="Веб-студия «Матрёшка» — создаём современные и быстрые сайты для бизнеса и стартапов. Разрабатываем сайты, которые помогают решать задачи бизнеса и расти."
+      />
       <HeroBLock />
       <Section_1 />
       <Section_2 />

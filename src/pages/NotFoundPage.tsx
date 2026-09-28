@@ -1,3 +1,4 @@
+import Seo from "../components/general/Seo";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router";
 import { Icons } from "../components/ui/Icons";
@@ -5,6 +6,7 @@ import { Icons } from "../components/ui/Icons";
 export default function NotFoundPage() {
   return (
     <>
+      <Seo title="Страница не найдена" description="Запрашиваемая страница не найдена. Перейдите на главную страницу веб-студии «Матрёшка»." />
       <main className="flex flex-1 flex-col items-center justify-center px-5 py-12 text-center sm:py-20">
         <p className="text-sm font-semibold uppercase tracking-tight-long">
           Кажется, мы заблудились

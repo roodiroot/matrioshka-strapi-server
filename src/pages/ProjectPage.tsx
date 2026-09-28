@@ -1,10 +1,16 @@
-import ProjectArticle from "../components/projects/ProjectArticle";
 import { ArrowLeft } from "lucide-react";
+import { Icons } from "../components/ui/Icons";
+import Seo from "../components/general/Seo";
+import ProjectArticle from "../components/projects/ProjectArticle";
 import { Link, useParams } from "react-router";
 import { useProject } from "../hooks/useProjects";
 import Button from "../components/ui/Button";
 import { useModal } from "../hooks/useModal";
 import NotFoundPage from "./NotFoundPage";
+import { mediaUrl } from "../lib/utils";
+import ArticleForm from "../components/projects/ArticleForm";
+import ArticleHeader from "../components/projects/ArticleHeader";
+import Breadcrumbs from "../components/general/Breadcrumbs";
 
 export default function ProjectPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -16,6 +22,7 @@ export default function ProjectPage() {
   if (isPending) {
     return (
       <main className="mx-auto w-full max-w-7xl px-5 py-16">
+        <Seo title="Загрузка проекта" description="Проект веб-студии «Матрёшка»." />
         <p role="status">Загружаем проект…</p>
       </main>
     );
@@ -24,6 +31,10 @@ export default function ProjectPage() {
   if (isError) {
     return (
       <main className="mx-auto w-full max-w-7xl px-5 py-16">
+        <Seo
+          title="Не удалось загрузить проект"
+          description="Попробуйте загрузить проект веб-студии «Матрёшка» снова."
+        />
         <div role="alert">
           <p>Не удалось загрузить проект.</p>
           <Button onClick={() => void refetch()} disabled={isFetching} className="mt-4">
@@ -40,54 +51,41 @@ export default function ProjectPage() {
   if (!project) return <NotFoundPage />;
 
   const coverUrl = project.cover?.url;
-  const strapiUrl = import.meta.env.VITE_API_URL?.replace(/\/+$/, "") ?? "";
-  const image = coverUrl
-    ? /^(https?:)?\/\//.test(coverUrl)
-      ? coverUrl
-      : `${strapiUrl}/${coverUrl.replace(/^\/+/, "")}`
-    : undefined;
-
 
   return (
     <main className="border-b-3 border-big-border">
-      <title>{`${project.title} — Матрёшка`}</title>
+      <Seo
+        title={project.title}
+        description={project.description}
+        image={coverUrl ? mediaUrl(coverUrl) : undefined}
+      />
       <article className="mx-auto w-full max-w-7xl px-5 py-10 sm:py-16">
-        <Link
-          to="/projects"
-          className="inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4"
-        >
-          <ArrowLeft aria-hidden="true" className="size-4" />
-          Все проекты
-        </Link>
-        <header className="my-10 sm:my-14">
-          <h1 className="wrap-break-word text-[clamp(3rem,9vw,7rem)] leading-none font-extrabold uppercase tracking-tight-custom">
-            {project.title}
-          </h1>
-          <p className="mt-6 max-w-3xl whitespace-pre-line text-xl tracking-tight sm:text-2xl">
-            {project.description}
-          </p>
-        </header>
-        {image && (
+        <Breadcrumbs items={[{ label: "Проекты", to: "/projects" }, { label: project.slug }]} />
+        <ArticleHeader title={project.title} description={project.description} />
+        {coverUrl && (
           <img
-            src={image}
+            src={mediaUrl(coverUrl)}
             alt={project.cover?.alternativeText || project.title}
             width={project.cover?.width}
             height={project.cover?.height}
-            className="max-h-[85svh] w-full rounded-3xl border-3 border-big-border bg-white object-contain shadow-big"
+            className="max-h-[85svh] w-full rounded-3xl border-3 border-big-border bg-white object-cover shadow-big"
           />
         )}
-        <ProjectArticle key={project.documentId} blocks={project.blocks ?? []} />
-        <section className="mt-12 flex flex-col items-start justify-between gap-6 rounded-3xl border-3 border-big-border bg-primary-button p-6 sm:p-10 lg:flex-row lg:items-center">
-          <div>
-            <h2 className="text-3xl font-extrabold uppercase tracking-tight-custom">
-              Создадим ваш следующий проект?
-            </h2>
-            <p className="mt-3 text-lg">Расскажите о задаче — обсудим, как воплотить её в жизнь.</p>
+        {(project.blocks?.length ?? 0) > 0 && (
+          <div aria-hidden="true" className="mt-12 flex items-center gap-5 sm:mt-20">
+            <span className="h-px flex-1 bg-big-border/20" />
+            <Icons.element_4 className="size-10 -rotate-12 sm:size-14" />
+            <span className="h-px flex-1 bg-big-border/20" />
           </div>
-          <Button onClick={open} variant="secondary" className="shrink-0">
-            Обсудить проект
-          </Button>
-        </section>
+        )}
+        <ProjectArticle key={project.documentId} blocks={project.blocks ?? []} />
+        <div className="mt-12 border-t border-big-border/20 pt-6">
+          <Link to="/projects" className="inline-flex items-center gap-3 rounded-sm text-sm font-semibold underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4">
+            <ArrowLeft aria-hidden="true" className="size-4" />
+            Все проекты
+          </Link>
+        </div>
+        <ArticleForm open={open} />
       </article>
     </main>
   );

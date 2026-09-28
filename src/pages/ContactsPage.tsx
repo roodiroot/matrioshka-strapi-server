@@ -1,5 +1,6 @@
+import Seo from "../components/general/Seo";
+import Breadcrumbs from "../components/general/Breadcrumbs";
 import { ArrowUpRight, Mail, MessageCircle } from "lucide-react";
-import { Link } from "react-router";
 import Button from "../components/ui/Button";
 import { Icons } from "../components/ui/Icons";
 import { useModal } from "../hooks/useModal";
@@ -9,15 +10,9 @@ export default function ContactsPage() {
 
   return (
     <main className="border-b-3 border-big-border">
-      <title>Контакты — Матрёшка</title>
+      <Seo title="Контакты" description="Свяжитесь с командой «Матрёшка», чтобы обсудить разработку сайта и рассказать о вашей задаче." />
       <div className="mx-auto w-full max-w-7xl px-5 py-10 sm:py-16 lg:py-20">
-        <nav aria-label="Хлебные крошки" className="mb-10 flex items-center gap-3 text-sm">
-          <Link to="/" className="underline underline-offset-4 hover:no-underline">
-            Главная
-          </Link>
-          <span aria-hidden="true">/</span>
-          <span aria-current="page">Контакты</span>
-        </nav>
+        <Breadcrumbs items={[{ label: "Контакты" }]} />
 
         <div className="grid items-center gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
           <div>
