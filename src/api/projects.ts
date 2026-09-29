@@ -24,9 +24,11 @@ export function getProjects(
   page = 1,
   pageSize = 25,
   signal?: AbortSignal,
+  params?: {},
 ): Promise<PortfolioResponse> {
   return fetchProjects(
     new URLSearchParams({
+      ...params,
       "pagination[page]": String(page),
       "pagination[pageSize]": String(pageSize),
       populate: "cover",

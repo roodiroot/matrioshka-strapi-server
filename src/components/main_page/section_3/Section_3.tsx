@@ -12,7 +12,9 @@ import nevalashkaImage from "../../../assets/nevalashka.png";
 
 const Section_3 = () => {
   const navigate = useNavigate();
-  const { data, isPending, isError, refetch, isFetching } = useProjects(1, 3);
+  const { data, isPending, isError, refetch, isFetching } = useProjects(1, 3, {
+    sort: "updatedAt:desc",
+  });
   const projects = data?.data ?? [];
   const strapiUrl = import.meta.env.VITE_API_URL?.replace(/\/+$/, "") ?? "";
   return (

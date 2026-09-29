@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { getProject, getProjects } from "../api/projects";
 
-export function useProjects(page = 1, pageSize = 25) {
+export function useProjects(page = 1, pageSize = 25, params = {}) {
   return useQuery({
-    queryKey: ["projects", "list", page, pageSize],
-    queryFn: ({ signal }) => getProjects(page, pageSize, signal),
+    queryKey: ["projects", "list", page, pageSize, params],
+    queryFn: ({ signal }) => getProjects(page, pageSize, signal, params),
     staleTime: 60_000,
   });
 }
