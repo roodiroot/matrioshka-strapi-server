@@ -1,5 +1,6 @@
 import { Icons } from "../../ui/Icons";
 import PhoneForm from "../../general/forms/PhoneForm";
+import { Link } from "react-router";
 
 const Footer = () => {
   return (
@@ -16,8 +17,14 @@ const Footer = () => {
 
         <Icons.logo className="pointer-events-none absolute right-[8%] top-1/2 hidden w-35 -translate-y-1/2 sm:block" />
       </div>
-      <div className="bg-background border-t-3 border-big-border px-5 py-5 text-center text-sm font-semibold uppercase tracking-tight-custom">
-        Создаём сайты, которые работают
+      <div className="bg-background border-t-3 border-big-border px-5 py-5 text-center">
+        <div className=" text-sm font-semibold uppercase tracking-tight-custom">
+          Создаём сайты, которые работают
+        </div>
+        <div className="mt-4 text-gray-700 underline text-center text-xs flex gap-x-4 justify-center flex-wrap">
+          <Link to="/docs/pd-consent">Политика конфиденциальности</Link>
+          <Link to="/docs/privacy-policy">Согласие на обработку персональных данных</Link>
+        </div>
       </div>
     </footer>
   );

@@ -14,6 +14,7 @@ import ProjectsPage from "./pages/ProjectsPage";
 import ScrollToTop from "./components/general/ScrollToTop";
 
 import AboutPage from "./pages/AboutPage";
+import DocPage from "./pages/DocPage";
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/projects/:slug" element={<ProjectPage />} />
+        <Route path="/docs/pd-consent" element={<DocPage />} />
+        <Route path="/docs/privacy-policy" element={<DocPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
