@@ -4,7 +4,7 @@ import FeedbackModal from "./modal/FeedbackModal";
 const Overlay = () => {
   return (
     <>
-      <FeedbackModal />;
+      <FeedbackModal />
       <CookieBanner />
     </>
   );

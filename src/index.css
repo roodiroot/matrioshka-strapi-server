@@ -124,6 +124,7 @@
   font-size: clamp(1rem, 2vw, 1.25rem);
   line-height: 1.8;
   overflow-wrap: anywhere;
+  letter-spacing: var(--tracking-tight-custom)
 }
 .project-prose > * + * { margin-top: 1.25em; }
 .project-prose :is(h1, h2, h3, h4, h5, h6) {

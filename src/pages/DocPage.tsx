@@ -14,7 +14,10 @@ const documentIds: Record<string, string | undefined> = {
 const DocPage = () => {
   const { pathname } = useLocation();
   const documentId = documentIds[pathname];
-  const { data: doc, isPending, isError, refetch, isFetching, error } = useDocument(documentId);
+  const {
+    data: doc,
+    // isPending, isError, refetch, isFetching, error
+  } = useDocument(documentId);
 
   if (!documentId) {
     return <NotFoundPage />;

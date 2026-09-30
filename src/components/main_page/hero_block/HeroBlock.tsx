@@ -3,8 +3,10 @@ import heroImage from "../../../assets/hero.png";
 import mouseImage from "../../../assets/mouse.png";
 import { Icons } from "../../ui/Icons";
 import { useModal } from "../../../hooks/useModal";
+import { useNavigate } from "react-router";
 
 const HeroBLock = () => {
+  const navigate = useNavigate();
   const { open } = useModal();
   return (
     <section className="border-b-[3px] border-shadow relative flex min-h-183.5 items-center overflow-hidden sm:min-h-0 sm:h-[calc(100svh-88px)] sm:max-h-192">
@@ -46,7 +48,9 @@ const HeroBLock = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-1.5 sm:gap-6 pt-4">
                 <Button onClick={open}>Обсудить проект</Button>
-                <Button variant="secondary">Смотреть проекты</Button>
+                <Button onClick={() => navigate("/projects")} variant="secondary">
+                  Смотреть проекты
+                </Button>
               </div>
             </div>
           </div>

@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^(www\.)?borisovportfolio\.ru$ [NC]
+RewriteRule ^(.*)$ https://matryoshka-studio.ru/$1 [R=301,L]
